@@ -14,7 +14,11 @@ public class BaseTest {
         org.openqa.selenium.chrome.ChromeOptions options = new org.openqa.selenium.chrome.ChromeOptions();
         
         // This is the critical line for Jenkins
-        options.addArguments("--headless=new"); 
+       // options.addArguments("--headless=new"); 
+        boolean headless = Boolean.parseBoolean(System.getProperty("headless", "true"));
+        if (headless) {
+            options.addArguments("--headless=new");
+        }
         options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
         options.addArguments("--no-sandbox");
